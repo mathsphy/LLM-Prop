@@ -181,10 +181,10 @@ def train(
                 save_to_path = f"checkpoints/samples/{task_name}/best_checkpoint_for_{property}.pt"
                 if isinstance(model, nn.DataParallel):
                     torch.save(model.module.state_dict(), save_to_path)
-                    compressCheckpointsWithTar(save_to_path)
+                    # compressCheckpointsWithTar(save_to_path)
                 else:
                     torch.save(model.state_dict(), save_to_path)
-                    compressCheckpointsWithTar(save_to_path)
+                    # compressCheckpointsWithTar(save_to_path)
                 
                 # save statistics of the best model
                 training_stats.append(
@@ -224,10 +224,10 @@ def train(
                 save_to_path = f"checkpoints/samples/{task_name}/best_checkpoint_for_{property}.pt"
                 if isinstance(model, nn.DataParallel):
                     torch.save(model.module.state_dict(), save_to_path)
-                    compressCheckpointsWithTar(save_to_path)
+                    # compressCheckpointsWithTar(save_to_path)
                 else:
                     torch.save(model.state_dict(), save_to_path)
-                    compressCheckpointsWithTar(save_to_path)
+                    # compressCheckpointsWithTar(save_to_path)
                 
                 # save statistics of the best model
                 training_stats.append(
@@ -356,7 +356,7 @@ def replace_bond_lengths_and_angles_with_num_and_ang(sentence):
 
 def get_cleaned_stopwords():
     # from https://github.com/igorbrigadir/stopwords
-    stopword_files = glob.glob("stopwords/en/*.txt")
+    stopword_files = glob.glob("../stopwords/en/*.txt")
 
     all_stopwords_list = set()
 
@@ -419,23 +419,23 @@ if __name__ == "__main__":
     valid_data_path = config.get('valid_data_path')
     test_data_path = config.get('test_data_path')
 
-    if task_name == "classification":
-        if property not in ["is_gap_direct"]:
-            raise Exception("When task_name is 'classification' please set the property name to 'is_gap_direct'")
-    elif task_name == "regression":
-        if property not in ["band_gap", "volume"]:
-            raise Exception("When task_name is 'regression' please set the property name to either 'band_gap' or 'volume'")
-    else:
-        raise Exception("Please set the task_name to either 'regression' or 'classification'")
+    # if task_name == "classification":
+    #     if property not in ["is_gap_direct"]:
+    #         raise Exception("When task_name is 'classification' please set the property name to 'is_gap_direct'")
+    # elif task_name == "regression":
+    #     if property not in ["band_gap", "volume"]:
+    #         raise Exception("When task_name is 'regression' please set the property name to either 'band_gap' or 'volume'")
+    # else:
+    #     raise Exception("Please set the task_name to either 'regression' or 'classification'")
 
-    if property in ["is_gap_direct"]:
-        if task_name not in ["classification"]:
-            raise Exception("Please set the task_name to a 'classification'")
-    elif property in ["band_gap", "volume"]:
-        if task_name not in ["regression"]:
-            raise Exception("Please set the task_name to a 'regression'")
-    else:
-        raise Exception("Please set the task_name to either 'band_gap', 'volume', or 'is_gap_direct'")
+    # if property in ["is_gap_direct"]:
+    #     if task_name not in ["classification"]:
+    #         raise Exception("Please set the task_name to a 'classification'")
+    # elif property in ["band_gap", "volume"]:
+    #     if task_name not in ["regression"]:
+    #         raise Exception("Please set the task_name to a 'regression'")
+    # else:
+    #     raise Exception("Please set the task_name to either 'band_gap', 'volume', or 'is_gap_direct'")
 
     # prepare the data
     train_data = pd.read_csv(train_data_path)
