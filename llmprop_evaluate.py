@@ -175,7 +175,7 @@ base_model.resize_token_embeddings(len(tokenizer))
 # loading the checkpoint of the pretrained model
 print(best_model_path)
 print(best_model_path[0:-7] + ".pt")
-decompressTarCheckpoints(best_model_path)
+# decompressTarCheckpoints(best_model_path)
 best_model_path = best_model_path[0:-7] + ".pt"
 best_model = T5Predictor(base_model, base_model_output_size, drop_rate=drop_rate, pooling=pooling)
 
